@@ -40,9 +40,10 @@ Langchain/
 
 ### Installation
 
-1. **Clone/Navigate to the project**
+1. **Clone and Navigate to the project**
    ```bash
-   cd /Users/shaikfazil/Desktop/backend/Langchain
+   git clone https://github.com/fazil-shaik/ai-agents
+   cd ai-agents
    ```
 
 2. **Install dependencies**
@@ -55,6 +56,9 @@ Langchain/
    ```env
    GEMINI_API_KEY=your_google_gemini_api_key_here
    PORT=3000
+   LANGCHAIN_API_KEY=
+   LANGCHAIN_PROJECT=
+   LANGCHAIN_TRACING_V2=true
    ```
 
 ### Running the Application
@@ -149,27 +153,6 @@ history: "as accused or named criminal doesnt have any prior convictions.or any 
 | `dotenv` | ^17.2.3 | Environment variable management |
 | `nodemon` | ^3.1.10 | Development server with auto-reload |
 
-## 🐛 Troubleshooting
-
-### No Response from Judge
-**Issue**: Judge returns `<<NO_RESPONSE from You are a strict, serious JUDGE.>>`
-
-**Solution**: Ensure the Gemini API response structure is properly parsed. The `geminiWrapper.js` expects `response.kwargs.content`.
-
-### API Key Error
-**Issue**: `GEMINI_API_KEY is not set`
-
-**Solution**: Verify your `.env` file contains `GEMINI_API_KEY=<your_key>`
-
-### Port Already in Use
-**Issue**: `Error: listen EADDRINUSE: address already in use :::3000`
-
-**Solution**: 
-```bash
-kill -9 $(lsof -ti:3000)  # Kill process on port 3000
-npm start                  # Restart
-```
-
 ## 📝 Key Files Explained
 
 ### `graph.js`
@@ -204,11 +187,6 @@ npm start                  # Restart
 - Manages token usage and errors
 - Accumulates conversation history
 
-## 🔐 Security Notes
-
-- Never commit `.env` file with API keys to version control
-- Use environment variables for sensitive data
-- Consider rate limiting if deploying to production
 
 ## 📊 Example Output
 
@@ -247,11 +225,5 @@ Counsel, your arguments regarding the ambiguity of the visual evidence have been
 ## 📄 License
 
 ISC
-
-## 👤 Author
-
-Created for AI-powered legal simulation using LangChain and Google Gemini.
-
----
 
 **Last Updated**: November 17, 2025
